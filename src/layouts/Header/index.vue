@@ -9,9 +9,13 @@ const router = useRouter();
 
 const userStore = useUserStore();
 
+const handleRedirectUserInfo = () => {};
+
+const handleVisibleEditPasswordModal = () => {};
+
 const handleLogout = async () => {
     await userStore.logout();
-    router.push(`/login?redirect=${route.fullPath}`);
+    router.push({ path: `/sign-in`, query: { redirect: route.fullPath } });
 };
 </script>
 
@@ -20,8 +24,11 @@ const handleLogout = async () => {
         <div class="header-menu">
             <el-dropdown>
                 <el-avatar :src="userStore.userInfo?.avatar"></el-avatar>
+                <div class="ml-[20px]">{{ userStore.userInfo?.nickname }}</div>
                 <template #dropdown>
                     <el-dropdown-menu>
+                        <el-dropdown-item @click="handleRedirectUserInfo">用户信息</el-dropdown-item>
+                        <el-dropdown-item @click="handleVisibleEditPasswordModal">重置密码</el-dropdown-item>
                         <el-dropdown-item divided @click="handleLogout">退出登录</el-dropdown-item>
                     </el-dropdown-menu>
                 </template>

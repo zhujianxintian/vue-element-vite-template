@@ -1,11 +1,10 @@
 import { ref } from 'vue';
 import { defineStore } from 'pinia';
-import type { IUserInfo } from '@/types/modules/user';
 
-const useUserStore = defineStore('user', () => {
+const useUserStore = defineStore('tab', () => {
     const token = ref('');
 
-    const userInfo = ref<IUserInfo | null>(null);
+    const userInfo = ref(null);
 
     const signIn = async () => {
         userInfo.value = null;

@@ -6,3 +6,14 @@ body {
 #app {
     height: 100%;
 }
+
+// 修复 el-from inline 模式下 el-select 没有宽度的问题
+.el-form--inline {
+    .el-form-item {
+        --el-form-line-content-width: 220px;
+
+        .el-select {
+            width: var(--el-form-line-content-width);
+        }
+    }
+}
