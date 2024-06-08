@@ -5,6 +5,7 @@ import vue from '@vitejs/plugin-vue';
 import vueJsx from '@vitejs/plugin-vue-jsx';
 import vueSetupExtend from 'vite-plugin-vue-setup-extend';
 import vueDevTools from 'vite-plugin-vue-devtools';
+import { createHtmlPlugin } from 'vite-plugin-html';
 import autoImport from 'unplugin-auto-import/vite';
 import components from 'unplugin-vue-components/vite';
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers';
@@ -22,6 +23,15 @@ export default defineConfig(({ mode }) => {
     const env = loadEnv(mode, paths.root);
     return {
         plugins: [
+            // or use 'vite-plugin-html-env'
+            createHtmlPlugin({
+                minify: true,
+                inject: {
+                    data: {
+                        title: 'Vue Element Vite',
+                    },
+                },
+            }),
             vue(),
             vueJsx(),
             vueSetupExtend(),
